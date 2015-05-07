@@ -1,7 +1,5 @@
 @extends('layout.main')
 @section('content')
-
-sss
  <div class="content">
 	<form action="/categoria/{{ $categoria->id_categoria }}/update" method="post">
 		<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
