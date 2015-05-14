@@ -6,6 +6,7 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Post;
+use App\Categoria;
 use App\Http\Requests\PostRequest;
 
 class PostController extends Controller {
@@ -23,7 +24,9 @@ class PostController extends Controller {
 	}
 
 	public function create(){
-		return view('post.create');
+		$categorias = Categoria::all();
+		$post = new Post();
+		return view('post.create')->with('categorias', $categorias)->with('post', $post);
 	}
 
 	public function store(Request $request){
@@ -44,6 +47,7 @@ class PostController extends Controller {
 	public function edit($id){
 
 		$post = Post::find($id);
+		$categorias = Categoria::all();
 
 		if(!is_object($post)){
 			return redirect('/post')
@@ -56,13 +60,19 @@ class PostController extends Controller {
 		}
 
 		return view('post.edit')
-			->with('post', $post);
+			->with('post', $post)->with("categorias",$categorias);
 	}
 
-	public function update(Request $request, $id){
+	public function save(Request $request){
 
-		$post = Post::find($id);
+		if(is_numeric($request->get('id'))){
+			$post = Post::find($request->get('id'));
+		} else {
+			$post = new Post();
+		}
+
 		$post->ds_post = $request->get('ds_post');
+		$post->categoria()->associate(Categoria::find($request->get('id_categoria')));
 		$post->save();
 
 		return redirect('/post')

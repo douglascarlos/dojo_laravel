@@ -29,9 +29,13 @@ class CategoriaController extends Controller {
 
 	}
 
-	public function update(Request $request, $id){
+	public function save(Request $request){
 
-		$categoria = Categoria::find($id);
+		if($request->get('id') != ''){
+			$categoria = Categoria::find($request->get('id'));
+		}else{
+			$categoria = new Categoria();
+		}
 
 		$categoria->nm_categoria = $request->get('nm_categoria');
 		$categoria->ds_categoria = $request->get('ds_categoria');
@@ -39,6 +43,21 @@ class CategoriaController extends Controller {
 
 		return redirect('/categoria');
 
+	}
+
+	public function create(){
+		return view('categoria.create')->with('categoria', new Categoria());
+	}
+
+	public function destroy($id){
+		Categoria::destroy($id);
+
+		return redirect('/categoria')->with('alert', [ 
+				'message' => 'Categoria excluída com sucesso', 
+				'type' => 'success', 
+				'before' => null, 
+				'after' => null 
+			]);
 	}
 
 }
