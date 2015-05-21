@@ -18,7 +18,6 @@ class PostController extends Controller {
 	public function index(){
 
 		$posts = Post::with('categoria')->get();
-		dd($posts);
 
 		return view('post.posts')
 			->with('posts', $posts);
@@ -30,20 +29,6 @@ class PostController extends Controller {
 		return view('post.create')->with('categorias', $categorias)->with('post', $post);
 	}
 
-	public function store(Request $request){
-		
-		$post = new Post();
-		$post->ds_post = $request->get('ds_post');
-		$post->save();
-
-		return redirect('/post')
-			->with('alert', [ 
-				'message' => 'Post criado com sucesso', 
-				'type' => 'success', 
-				'before' => null, 
-				'after' => null
-			]);
-	}
 
 	public function edit($id){
 
@@ -72,11 +57,8 @@ class PostController extends Controller {
 			$post = new Post();
 		}
 
+		$post->fill($request->input())->save();
 
-
-		$post->ds_post = $request->get('ds_post');
-		$post->id_categoria = $request->get('id_categoria');
-		$post->save();
 
 		return redirect('/post')
 			->with('alert', [ 
