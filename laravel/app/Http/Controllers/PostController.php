@@ -17,7 +17,8 @@ class PostController extends Controller {
 
 	public function index(){
 
-		$posts = Post::all();
+		$posts = Post::with('categoria')->get();
+		dd($posts);
 
 		return view('post.posts')
 			->with('posts', $posts);
@@ -71,8 +72,10 @@ class PostController extends Controller {
 			$post = new Post();
 		}
 
+
+
 		$post->ds_post = $request->get('ds_post');
-		$post->categoria()->associate(Categoria::find($request->get('id_categoria')));
+		$post->id_categoria = $request->get('id_categoria');
 		$post->save();
 
 		return redirect('/post')

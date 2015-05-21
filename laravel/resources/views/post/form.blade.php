@@ -12,13 +12,13 @@
             <select name='id_categoria' class="form-control">
                 <option value="">Selecione</option>
                 @foreach($categorias as $categoria)
-                    <option value="{{ $categoria->id_categoria }}">{{ $categoria->nm_categoria }}</option>
+                    <option value="{{ $categoria->id_categoria }}" @if($categoria->id_categoria == $post->id_categoria){{"selected"}} @endif >{{ $categoria->nm_categoria }}</option>
                 @endforeach
             </select>
         </div>
 
         <p class="text-right">
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
             <a class="btn btn-primary" href="/post" role="button">Voltar</a>
         </p>
     </form>
