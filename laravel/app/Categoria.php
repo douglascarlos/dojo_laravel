@@ -8,7 +8,7 @@ class Categoria extends Model {
 	protected $primaryKey = 'id_categoria';
 
 	public function post(){
-		return $this->belongsTo('Post', 'id_post');
+		return $this->hasMany('Post', 'id_post');
 	}
 
 }

@@ -29,7 +29,7 @@
          <tr>
             <td width="1%" align="center">{{ $post->id_post }}</td>
             <td width="">{{ $post->ds_post }}</td>
-            <td width="">{{ $post->id_categoria}}</td>
+            <td width="">{{ $post->categoria->nm_categoria}}</td>
             <td width="12%">{{ $post->created_at->format('d/m/y \à\s H:i') }}</td>
             <td width="12%">{{ $post->updated_at->format('d/m/y \à\s H:i') }}</td>
             <td width="1%" align="center">

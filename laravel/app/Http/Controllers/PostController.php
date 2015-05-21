@@ -17,7 +17,7 @@ class PostController extends Controller {
 
 	public function index(){
 
-		$posts = Post::with('categoria')->get();
+		$posts = Post::all();
 
 		return view('post.posts')
 			->with('posts', $posts);
@@ -51,15 +51,8 @@ class PostController extends Controller {
 
 	public function save(Request $request){
 
-		if(is_numeric($request->get('id'))){
-			$post = Post::find($request->get('id'));
-		} else {
-			$post = new Post();
-		}
-
+		$post = Post::findOrNew($request->get("id"));
 		$post->fill($request->input())->save();
-
-
 		return redirect('/post')
 			->with('alert', [ 
 				'message' => 'Post alterado com sucesso', 
