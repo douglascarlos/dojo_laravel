@@ -7,8 +7,13 @@ class Categoria extends Model {
 	protected $table = 'categoria';
 	protected $primaryKey = 'id_categoria';
 
+	protected $fillable = [
+
+		"nm_categoria", "ds_categoria"
+	];
+
 	public function post(){
-		return $this->hasMany('Post', 'id_post');
+		return $this->hasOne('Post', 'id_post');
 	}
 
 }

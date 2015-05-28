@@ -31,6 +31,13 @@
 					<strong class="text-uppercase text-primary">Dojo:</strong> Laravel
 				</a>
             </div>
+
+            <ul class="nav navbar-nav">
+        		<!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
+        		<li><a href="/post">Post</a></li>
+        		<li><a href="/categoria">Categoria</a></li>
+        		<li><a href="/noticia">Notícia</a></li>
+      		</ul>
         </div>
     </nav>
 

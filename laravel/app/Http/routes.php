@@ -23,3 +23,8 @@ Route::post('categoria/save', 'CategoriaController@save');
 Route::get('categoria/create', 'CategoriaController@create');
 
 Route::get('categoria/{categoria}/delete', 'CategoriaController@destroy');
+
+Route::get('noticia', 'PostController@noticia');
+
+Route::get('noticia/{post}/show', 'PostController@show');
+

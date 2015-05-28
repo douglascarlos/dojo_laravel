@@ -31,15 +31,8 @@ class CategoriaController extends Controller {
 
 	public function save(Request $request){
 
-		if($request->get('id') != ''){
-			$categoria = Categoria::find($request->get('id'));
-		}else{
-			$categoria = new Categoria();
-		}
-
-		$categoria->nm_categoria = $request->get('nm_categoria');
-		$categoria->ds_categoria = $request->get('ds_categoria');
-		$categoria->save();
+		$categoria = Categoria::findOrNew($request->get("id"));
+		$categoria->fill($request->input())->save();
 
 		return redirect('/categoria');
 

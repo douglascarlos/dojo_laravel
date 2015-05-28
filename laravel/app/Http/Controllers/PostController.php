@@ -33,6 +33,7 @@ class PostController extends Controller {
 	public function edit($id){
 
 		$post = Post::find($id);
+
 		$categorias = Categoria::all();
 
 		if(!is_object($post)){
@@ -51,8 +52,10 @@ class PostController extends Controller {
 
 	public function save(Request $request){
 
+
 		$post = Post::findOrNew($request->get("id"));
 		$post->fill($request->input())->save();
+
 		return redirect('/post')
 			->with('alert', [ 
 				'message' => 'Post alterado com sucesso', 
@@ -73,6 +76,16 @@ class PostController extends Controller {
 				'before' => null, 
 				'after' => null 
 			]);
+    }
+
+    public function noticia(){
+    	$posts = Post::orderBy('created_at', 'DESC')->get();
+    	return view('noticia.noticias')->with('posts', $posts);
+    }
+
+    public function show($id){
+    	$post = Post::find($id);
+    	return view('noticia.show')->with('post', $post);
     }
 
 }
