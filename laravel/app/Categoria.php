@@ -12,6 +12,8 @@ class Categoria extends Model {
 		"nm_categoria", "ds_categoria"
 	];
 
+#Testando o git
+
 	public function post(){
 		return $this->hasOne('Post', 'id_post');
 	}
