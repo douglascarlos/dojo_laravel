@@ -28,3 +28,4 @@ Route::get('noticia', 'PostController@noticia');
 
 Route::get('noticia/{post}/show', 'PostController@show');
 
+Route::post('noticia/{post}/comentar', 'ComentarioController@save');

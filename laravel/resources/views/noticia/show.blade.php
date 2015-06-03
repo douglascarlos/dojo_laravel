@@ -15,7 +15,7 @@
 <div class="panel panel-default">
   
   <div class="panel-heading">
-    <h4>Comentários</h4>
+    <h4>Comentários <span class="badge">{{count($post->comentarios)}}</span> </h4>  
   </div>
 
   <ul class="list-group">
@@ -31,7 +31,22 @@
 
   <div class="panel-body">
     <p><b>Faça o seu cometário:</b></p>
+    @include('noticia.erro')
+    <form action="/noticia/{{$post->id_post}}/comentar" method="post">
+      <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 
+      <div class="form-group">
+        <input name="nm_email" type="text" placeholder="Email" class="form-control" />
+      </div>
+       
+      <div class="form-group">
+        <textarea name="ds_comentario" class="form-control" rows="6" placeholder="Digite aqui seu comentário..."></textarea>
+      </div>
+
+       <p class="text-right">
+          <button type="submit" class="btn btn-primary">Comentar</button>
+      </p>
+    </form >
   </div>
 
 </div>
