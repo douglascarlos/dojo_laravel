@@ -37,6 +37,8 @@
         		<li><a href="/post">Post</a></li>
         		<li><a href="/categoria">Categoria</a></li>
         		<li><a href="/noticia">Notícia</a></li>
+        		<li><a href="/auth/login">Sign Up</a></li>
+        		<li><a href="/auth/register">Registro</a></li>
       		</ul>
         </div>
     </nav>

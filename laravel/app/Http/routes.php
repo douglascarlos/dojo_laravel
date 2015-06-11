@@ -4,6 +4,14 @@ Route::get('/', function(){
 	return redirect('/post');
 });
 
+Route::get('home', 'HomeController@index');
+
+Route::controllers([
+	'auth' => 'Auth\AuthController',
+	'password' => 'Auth\PasswordController',
+	
+]);
+
 Route::get('post', 'PostController@index');
 
 Route::get('post/create', 'PostController@create');

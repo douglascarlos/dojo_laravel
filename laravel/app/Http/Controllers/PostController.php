@@ -12,7 +12,7 @@ use App\Http\Requests\PostRequest;
 class PostController extends Controller {
 
 	public function __construct(){
-		$this->middleware('guest');
+		$this->middleware('auth');
 	}
 
 	public function index(){
